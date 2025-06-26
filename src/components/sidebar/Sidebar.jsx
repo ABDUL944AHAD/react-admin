@@ -1,19 +1,43 @@
 import Logo from "../../images/logo.png";
 import "./sidebar.css";
 import { UilEstate } from "@iconscout/react-unicons";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faHouse } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars} from '@fortawesome/free-solid-svg-icons';
+import { motion } from "framer-motion";
 import { SidebarData } from "../../Data/Data";
-import { UilSignOutAlt } from "@iconscout/react-unicons";
+import { UilSignOutAlt , UilBars } from "@iconscout/react-unicons";
 import { useState } from "react";
 
 function Sidebar() {
 
   const[selected , setSelected] = useState(0)
+  const[expanded , setExpanded] = useState(true);
+
+  const sidebarVariants = {
+    true: {
+      left: '0',
+      // transition: {
+      //   type: 'spring',
+      //   stiffness: 500,
+      //   damping: 30,
+      // },
+    },
+    false:{
+      left:'-60%',
+    }
+  }
 
   return (
-    <div className="Sidebar">
+    <>
+      <div  className="bars" style={expanded ? { left: '60%' } : { left: '5%' }}
+      onClick={() => setExpanded(!expanded)}
+      >
+        <FontAwesomeIcon icon={faBars} />
+      </div>
+    <motion.div className="Sidebar"
+    variants={sidebarVariants}
+    animate={window.innerWidth <= 768 ? `${expanded}` : '' }
+    >
       {/* logo */}
       <div className="logo">
         <img src={Logo} alt="Logo" />
@@ -41,7 +65,8 @@ function Sidebar() {
           <UilSignOutAlt size="2rem" />
         </div>
       </div>
-    </div>
+    </motion.div>
+    </>
   );
 }
 

@@ -107,3 +107,19 @@
         left: 6rem;
     }
 }
+
+
+@media screen and (max-width:768px){
+    .ExpandedCard{
+       top: 8rem;
+       height: 50%;
+       left: 15px;
+       width: 80%;
+    }
+    .ExpandedCard>span:nth-of-type(1){
+        font-size: 20px;
+    }
+    .ExpandedCard>span:nth-of-type(2){
+        font-size: 14px;
+    }
+}
